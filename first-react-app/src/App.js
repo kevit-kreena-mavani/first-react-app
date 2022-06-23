@@ -1,9 +1,10 @@
 import logo from "./logo.svg";
 import "./App.css";
-import ExpenseItem from "./components/ExpenseItem";
+import Expense from "./components/Expense";
+
 
 function App() {
-  const expense = [
+  const items = [
     {
       title: "car insurance",
       amount: "267",
@@ -12,42 +13,23 @@ function App() {
     {
       title: "car insurance 1",
       amount: "268",
-      date: new Date(2021, 2, 13),
+      date: new Date(2021, 3, 14),
     },
     {
       title: "car insurance 2",
       amount: "269",
-      date: new Date(2021, 2, 13),
+      date: new Date(2021, 4, 15),
     },
     {
       title: "car insurance 3",
       amount: "270",
-      date: new Date(2021, 2, 13),
+      date: new Date(2021, 5, 16),
     },
   ];
   return (
     <div>
       <h1>Hello!!</h1>
-      <ExpenseItem
-        title={expense[0].title}
-        amount={expense[0].amount}
-        date={expense[0].date}
-      ></ExpenseItem>
-      <ExpenseItem
-        title={expense[1].title}
-        amount={expense[1].amount}
-        date={expense[1].date}
-      ></ExpenseItem>
-      <ExpenseItem
-        title={expense[2].title}
-        amount={expense[2].amount}
-        date={expense[2].date}
-      ></ExpenseItem>
-      <ExpenseItem
-        title={expense[3].title}
-        amount={expense[3].amount}
-        date={expense[3].date}
-      ></ExpenseItem>
+      <Expense item= {items}></Expense>
     </div>
   );
 }
