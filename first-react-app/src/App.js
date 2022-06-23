@@ -1,35 +1,41 @@
-import logo from "./logo.svg";
-import "./App.css";
-import Expense from "./components/Expense";
 
 
-function App() {
-  const items = [
+import Expenses from './components/Expenses/Expenses';
+
+const App = () => {
+  const expenses = [
     {
-      title: "car insurance",
-      amount: "267",
-      date: new Date(2021, 2, 13),
+      id: 'e1',
+      title: 'Toilet Paper',
+      amount: 94.12,
+      date: new Date(2020, 7, 14),
+    },
+    { id: 'e2', title: 'New TV', amount: 799.49, date: new Date(2021, 2, 12) },
+    {
+      id: 'e3',
+      title: 'Car Insurance',
+      amount: 294.67,
+      date: new Date(2021, 2, 28),
     },
     {
-      title: "car insurance 1",
-      amount: "268",
-      date: new Date(2021, 3, 14),
-    },
-    {
-      title: "car insurance 2",
-      amount: "269",
-      date: new Date(2021, 4, 15),
-    },
-    {
-      title: "car insurance 3",
-      amount: "270",
-      date: new Date(2021, 5, 16),
+      id: 'e4',
+      title: 'New Desk (Wooden)',
+      amount: 450,
+      date: new Date(2021, 5, 12),
     },
   ];
+
+  // return React.createElement(
+  //   'div',
+  //   {},
+  //   React.createElement('h2', {}, "Let's get started!"),
+  //   React.createElement(Expenses, { items: expenses })
+  // );
+
   return (
     <div>
-      <h1>Hello!!</h1>
-      <Expense item= {items}></Expense>
+      <h2>Let's get started!</h2>
+      <Expenses items={expenses} />
     </div>
   );
 }
