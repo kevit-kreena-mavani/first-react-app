@@ -1,5 +1,6 @@
 import { useState } from "react";
-import "./ExpenseForm.css";
+
+import styled from "styled-components";
 
 const ExpenseForm = (props) => {
   const [enteredTitle, setEnteredTitle] = useState("");
@@ -23,16 +24,47 @@ const ExpenseForm = (props) => {
       amount: enteredAmount,
       date: new Date(enteredDate),
     };
-    
-    props.onSaveExpenseData(ExpenseData)
+
+    props.onSaveExpenseData(ExpenseData);
     setEnteredTitle("");
     setEnteredAmount("");
     setEnteredDate("");
   };
+
+  const Form2 = styled.form`
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 1rem;
+
+    & label{
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    & input {
+      font: inherit;
+      padding: 0.5rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      width: 20rem;
+      max-width: 100%;
+    }
+
+    & button {
+      font: inherit;
+      cursor: pointer;
+      padding: 1rem 2rem;
+      border: 1px solid #40005d;
+      background-color: #40005d;
+      color: white;
+      border-radius: 12px;
+    }
+  `;
   return (
     <div>
-      <form className="expense-form" onSubmit={SubmitHandler}>
-        <div className="inputValue">
+      <Form2 onSubmit={SubmitHandler}>
+        <div>
           <label>Title</label>
           <input
             type="text"
@@ -40,20 +72,18 @@ const ExpenseForm = (props) => {
             onChange={TitleChangeHandler}
           />
         </div>
-        <div className="inputValue">
+        <div>
           <label>Amount</label>
           <input
             type="number"
-            
             value={enteredAmount}
             onChange={AmountChangeHandler}
           />
         </div>
-        <div className="inputValue">
+        <div>
           <label>Date</label>
           <input
             type="date"
-           
             min="2019-02-01"
             max="2022-06-01"
             value={enteredDate}
@@ -63,7 +93,8 @@ const ExpenseForm = (props) => {
         <div>
           <button type="submit">Add Expense</button>
         </div>
-      </form>
+      </Form2>
+     
     </div>
   );
 };

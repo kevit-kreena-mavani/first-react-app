@@ -4,12 +4,12 @@
     gap: 2rem;
     padding: 1rem;
   }
-.inputValue label{
+  .expense-form  label{
     font-weight: bold;
     margin-bottom: 0.5rem;
     display: block;
 }
-.inputValue input {
+.expense-form  input {
     font: inherit;
     padding: 0.5rem;
     border-radius: 6px;
