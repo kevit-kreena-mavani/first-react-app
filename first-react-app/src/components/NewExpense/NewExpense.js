@@ -1,3 +1,4 @@
+import Card from "../UI/Card";
 import ExpenseForm from "./ExpenseForm";
 import './newExpense.css';
 const NewExpense = (props) => {
@@ -10,9 +11,9 @@ const NewExpense = (props) => {
         props.onAddExpense(EnteredData)
     }
   return (
-    <div className="new-expense">
+    <Card className="new-expense">
       <ExpenseForm onSaveExpenseData = {saveExpenseDataHandler}></ExpenseForm>
-    </div>
+    </Card>
   );
 };
 export default NewExpense;

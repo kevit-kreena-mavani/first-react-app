@@ -1,0 +1,10 @@
+.chart{
+    display: flex;
+    flex-direction :row;
+    background-color: pink;
+    text-align: center;
+    height: 10rem;
+    justify-content: space-around;
+    border:1px solid transparent;
+    border-radius: 16px;
+}
