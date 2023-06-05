@@ -17,3 +17,29 @@
 .ant-form-item {
   margin: 0;
 }
+
+.ant-modal-content {
+  padding: 40px !important;
+}
+.ant-modal-title {
+  text-align: center;
+}
+.ant-form-item-control-input-content {
+  display: flex;
+  justify-content: space-between;
+}
+.ant-modal-body {
+  padding: 10px;
+}
+
+.ant-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.login-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+}

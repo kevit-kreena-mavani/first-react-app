@@ -13,7 +13,7 @@ import { Option } from "antd/es/mentions";
 import Dragger from "antd/es/upload/Dragger";
 
 const prefixSelector = (
-  <Form.Item name="prefix" noStyle>
+  <Form.Item name="countryCode" noStyle>
     <Select style={{ width: 70 }}>
       <Option value="91">+91</Option>
       <Option value="1">+1</Option>
@@ -22,8 +22,12 @@ const prefixSelector = (
 );
 
 function LoginForm() {
+  const onFinish = (values: any) => {
+    console.log("Success:", values);
+  };
+
   return (
-    <Form layout="vertical">
+    <Form layout="vertical" onFinish={onFinish}>
       <div className="form-layout">
         <Form.Item
           name="firstName"

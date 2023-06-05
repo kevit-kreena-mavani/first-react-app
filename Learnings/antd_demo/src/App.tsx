@@ -13,9 +13,11 @@ import {
 } from "@ant-design/icons";
 import LoginForm from "./Form";
 import { Header } from "antd/es/layout/layout";
+import LoginModal from "./login";
 
 function App() {
   const [collapsed, setCollapsed] = useState(false);
+  const [open, setOpen] = useState(false);
 
   type MenuItem = Required<MenuProps>["items"][number];
 
@@ -62,8 +64,8 @@ function App() {
 
           <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
             <BellFilled style={{ fontSize: "20px", color: "white" }} />
-            <Button type="primary">
-              <UserOutlined /> Profile
+            <Button type="primary" onClick={() => setOpen(true)}>
+              <UserOutlined /> login
             </Button>
           </div>
         </Header>
@@ -84,6 +86,7 @@ function App() {
           </Sider>
           <LoginForm />
         </Layout>
+        <LoginModal open={open} setOpen={setOpen} />
       </Layout>
     </div>
   );
