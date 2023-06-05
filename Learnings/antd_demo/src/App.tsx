@@ -68,7 +68,7 @@ function App() {
           </div>
         </Header>
 
-        <Layout style={{ height: "calc( 100vh - 64px)" }}>
+        <Layout style={{ height: "calc( 100vh - 50px)" }}>
           <Sider
             collapsible
             collapsed={collapsed}
