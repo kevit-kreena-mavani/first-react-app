@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
-import { Button, Dropdown, Layout, Menu } from "antd";
+import { Button, Dropdown, Layout, Menu, Popover } from "antd";
 import Sider from "antd/es/layout/Sider";
 import type { MenuProps } from "antd";
 import {
@@ -15,8 +15,12 @@ import LoginForm from "./Form";
 import { Header } from "antd/es/layout/layout";
 import LoginModal from "./login";
 
+const menuItemLabel = (data: any) => {
+  return <div>{data?.first_name}</div>;
+};
+
 function App() {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
   const [open, setOpen] = useState(false);
 
   type MenuItem = Required<MenuProps>["items"][number];
@@ -42,6 +46,12 @@ function App() {
     getItem("Files", "9", <FileOutlined />),
   ];
 
+  const getAllNotifications = async () => {
+    const response = await fetch("https://reqres.in/api/users");
+    const jsonData = await response.json();
+    console.log(jsonData);
+  };
+
   return (
     <div className="App">
       <Layout>
@@ -63,7 +73,14 @@ function App() {
           </Dropdown>
 
           <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
-            <BellFilled style={{ fontSize: "20px", color: "white" }} />
+            <Popover
+              placement="topRight"
+              title="Notifications"
+              content={<div>demo</div>}
+              trigger="click"
+            >
+              <BellFilled style={{ fontSize: "20px", color: "white" }} />
+            </Popover>
             <Button type="primary" onClick={() => setOpen(true)}>
               <UserOutlined /> login
             </Button>

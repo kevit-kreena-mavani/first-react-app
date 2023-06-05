@@ -40,13 +40,15 @@ function LoginModal(props: { open: boolean; setOpen: any }) {
           />
         </Form.Item>
         <Form.Item>
-          <Form.Item name="remember" valuePropName="checked" noStyle>
-            <Checkbox>Remember me</Checkbox>
-          </Form.Item>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <Form.Item name="remember" valuePropName="checked" noStyle>
+              <Checkbox>Remember me</Checkbox>
+            </Form.Item>
 
-          <a className="login-form-forgot" href="/">
-            Forgot password
-          </a>
+            <a className="login-form-forgot" href="/">
+              Forgot password
+            </a>
+          </div>
         </Form.Item>
 
         <div className="login-actions">
