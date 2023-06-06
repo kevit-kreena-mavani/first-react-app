@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import "./App.css";
-import { Button, Dropdown, Layout, Menu, Popover } from "antd";
+import { Avatar, Button, Dropdown, Layout, Menu, Popover } from "antd";
 import Sider from "antd/es/layout/Sider";
 import type { MenuProps } from "antd";
 import {
@@ -15,13 +15,25 @@ import LoginForm from "./Form";
 import { Header } from "antd/es/layout/layout";
 import LoginModal from "./login";
 
-const menuItemLabel = (data: any) => {
-  return <div>{data?.first_name}</div>;
+const Notification = ({ data }: any) => {
+  console.log(data);
+  return (
+    <div key={data?.id} className="notification">
+      <Avatar src={data?.avatar} size="large" />
+      <div>
+        <div>
+          {data?.first_name} {data?.last_name}
+        </div>
+        <div className="comment-text">{data?.email}</div>
+      </div>
+    </div>
+  );
 };
 
 function App() {
   const [collapsed, setCollapsed] = useState(true);
   const [open, setOpen] = useState(false);
+  const [notificationList, setNotificationList] = useState<object[]>([]);
 
   type MenuItem = Required<MenuProps>["items"][number];
 
@@ -49,8 +61,28 @@ function App() {
   const getAllNotifications = async () => {
     const response = await fetch("https://reqres.in/api/users");
     const jsonData = await response.json();
-    console.log(jsonData);
+
+    setNotificationList(jsonData?.data);
   };
+
+  const handleScroll = useCallback(
+    async (e: any) => {
+      if (
+        e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight &&
+        notificationList?.length < 13
+      ) {
+        const response = await fetch("https://reqres.in/api/users?page=2");
+        const jsonData = await response.json();
+
+        setNotificationList((prev: object[]) => [...prev, ...jsonData.data]);
+      }
+    },
+    [notificationList]
+  );
+
+  useEffect(() => {
+    getAllNotifications();
+  }, []);
 
   return (
     <div className="App">
@@ -76,7 +108,13 @@ function App() {
             <Popover
               placement="topRight"
               title="Notifications"
-              content={<div>demo</div>}
+              content={
+                <div className="notification-container" onScroll={handleScroll}>
+                  {notificationList?.map((notification) => (
+                    <Notification data={notification} />
+                  ))}
+                </div>
+              }
               trigger="click"
             >
               <BellFilled style={{ fontSize: "20px", color: "white" }} />
