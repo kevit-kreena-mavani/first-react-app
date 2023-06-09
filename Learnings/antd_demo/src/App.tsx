@@ -16,7 +16,6 @@ import { Header } from "antd/es/layout/layout";
 import LoginModal from "./login";
 
 const Notification = ({ data }: any) => {
-  console.log(data);
   return (
     <div key={data?.id} className="notification">
       <Avatar src={data?.avatar} size="large" />
@@ -58,6 +57,12 @@ function App() {
     getItem("Files", "9", <FileOutlined />),
   ];
 
+  const items2: MenuItem[] = [
+    getItem("Organization 1", "1"),
+    getItem("Organization 2", "2"),
+    getItem("Organization 3", "3"),
+  ];
+
   const getAllNotifications = async () => {
     const response = await fetch("https://reqres.in/api/users");
     const jsonData = await response.json();
@@ -69,7 +74,7 @@ function App() {
     async (e: any) => {
       if (
         e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight &&
-        notificationList?.length < 13
+        notificationList?.length < 7
       ) {
         const response = await fetch("https://reqres.in/api/users?page=2");
         const jsonData = await response.json();
@@ -97,7 +102,7 @@ function App() {
             padding: "0px 78px",
           }}
         >
-          <Dropdown menu={{ items }}>
+          <Dropdown menu={{ items: items2 }}>
             <Button type="primary">
               <HomeOutlined />
               Select Organization
