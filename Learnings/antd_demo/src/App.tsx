@@ -14,6 +14,7 @@ import {
 import LoginForm from "./Form";
 import { Header } from "antd/es/layout/layout";
 import LoginModal from "./login";
+import AntDButton from "./components/Button";
 
 const Notification = ({ data }: any) => {
   return (
@@ -124,6 +125,7 @@ function App() {
             >
               <BellFilled style={{ fontSize: "20px", color: "white" }} />
             </Popover>
+
             <Button type="primary" onClick={() => setOpen(true)}>
               <UserOutlined /> login
             </Button>
